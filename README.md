@@ -1,5 +1,7 @@
 # Portfólio — Davi Carravieri
 
+**Site no ar:** https://davicarravieri.github.io/portfolio/
+
 Meu portfólio pessoal. Tenho 19 anos, estudo Análise e Desenvolvimento de Sistemas e ensino realidade virtual e drones na Fábrica de Cultura (Poiesis).
 
 O site tem três partes:
