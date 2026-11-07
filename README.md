@@ -6,8 +6,10 @@ Meu portfólio pessoal. Tenho 19 anos, estudo Análise e Desenvolvimento de Sist
 
 O site tem três partes:
 
-1. **Retrato vivo:** uma versão 3D do meu rosto que segue o mouse com os olhos, manda beijo, fica desconfiada e estica como massa quando você puxa.
-2. **Conteúdo:** faixas de imagens que deslizam com a rolagem, "Sobre mim" que acende letra por letra, objetos 3D em gravidade zero que dá para arremessar, serviços e cartões de projetos que se empilham.
+1. **Retrato vivo:** uma versão 3D do meu rosto que segue o mouse com os olhos, manda beijo, fica desconfiada e estica como massa quando você puxa. Por cima dele, o título "Meu Portfólio" aparece letra por letra como um jato de spray, e as letras perto do cursor dão um pulinho.
+2. **Conteúdo:** faixas de imagens que deslizam com a rolagem, "Sobre mim" que acende letra por letra, objetos 3D em gravidade zero que dá para arremessar, títulos de seção pintados como uma passada de spray, serviços com linhas que se desenham e cartões de projetos que se empilham, com fotos que ganham profundidade sob o cursor.
+
+Em todo o site, partículas discretas (`js/particulas.js`) se afastam do cursor, ligam-se entre si com fios finos perto dele e esticam quando a página rola rápido.
 3. **Jardim de luz:** um campo de grama e flores feito do zero com Three.js. A luz segue o cursor, as flores se abrem perto dela e um clique faz o campo inteiro florescer.
 
 O site está em português e inglês (botão PT/EN no menu).
@@ -32,6 +34,8 @@ Depois abra http://localhost:8766.
 | `css/site.css` | Estilos |
 | `js/conteudo.js` | **Todos os textos (PT/EN), links de contato e listas de fotos.** É aqui que se edita o conteúdo. |
 | `js/site.js` | Idioma, seções, animações de rolagem e a física dos objetos em gravidade zero |
+| `js/particulas.js` | Partículas de fundo que reagem ao cursor e à rolagem |
+| `fontes/` | Fonte do título (Graffiti Youth) e a licença dela |
 | `js/retrato.js` | Motor do retrato vivo (WebGL) |
 | `js/flores.js` | Jardim de luz (Three.js r128) |
 | `imagens/` | Fotos dos projetos e objetos 3D decorativos |
@@ -72,6 +76,7 @@ python -m venv .venv
 - O layout e o motor do retrato vivo partem do modelo **Living Portrait** do [motionsites.ai](https://motionsites.ai). O prompt original está em `referencias/living-portrait-motionsites.md`.
 - O jardim de luz foi inspirado no modelo **Flower Valley**, mas foi escrito do zero, sem usar o código original.
 - Fonte [Kanit](https://fonts.google.com/specimen/Kanit) (Google Fonts).
+- Fonte do título [Graffiti Youth](https://www.dafont.com/graffiti-youth.font), de Nirmana Visual: grátis para uso pessoal. Para uso comercial, é preciso a licença completa em [nirmanavisual.com](https://nirmanavisual.com).
 
 ## Contato
 

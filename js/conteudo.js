@@ -21,6 +21,7 @@ window.TEXTOS = {
   pt: {
     titulo_pagina: 'Davi Carravieri — Portfólio',
     nav: ['Sobre', 'Serviços', 'Projetos', 'Contato'],
+    hero_titulo: 'Meu Portfólio',
     hero_frase: 'Estudante de ADS que transforma ideias em apps, sites e experiências com IA',
     contato: 'Fale comigo',
     sobre_titulo: 'Sobre mim',
@@ -51,6 +52,7 @@ window.TEXTOS = {
   en: {
     titulo_pagina: 'Davi Carravieri — Portfolio',
     nav: ['About', 'Services', 'Projects', 'Contact'],
+    hero_titulo: 'My Portfolio',
     hero_frase: 'A systems development student turning ideas into apps, websites and AI-powered experiences',
     contato: 'Contact me',
     sobre_titulo: 'About me',

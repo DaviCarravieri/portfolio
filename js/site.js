@@ -22,8 +22,37 @@
       if (v != null) el.textContent = v;
       if (el.dataset.tLabel) el.setAttribute('aria-label', pegar(t, el.dataset.tLabel));
     });
-    montarServicos(); montarProjetos(); montarContato(); letras.preparar();
+    titulo.montar(); montarServicos(); montarProjetos(); montarContato(); letras.preparar();
     observarFades();
+  }
+
+  // ---------- título da abertura: letras "pintadas com spray" ----------
+  // Cada letra entra borrada e grande, como um jato de tinta assentando na parede.
+  // Depois, as letras perto do cursor sobem e giram um pouquinho.
+  const titulo = {
+    el: $('#heroTitulo'), spans: [],
+    montar() {
+      const texto = this.el.textContent;
+      this.el.setAttribute('aria-label', texto);
+      let i = 0;
+      this.el.innerHTML = texto.split(' ').map(p => `<span class="palavra" aria-hidden="true">${[...p].map(c =>
+        `<span class="lt" style="--i:${i++};--r:${((Math.random() - .5) * 24).toFixed(1)}deg">${c}</span>`).join('')}</span>`).join(' ');
+      this.spans = [...this.el.querySelectorAll('.lt')];
+    },
+    mover(x, y) {
+      this.spans.forEach(s => {
+        const r = s.getBoundingClientRect(), d = Math.hypot(x - (r.left + r.width / 2), y - (r.top + r.height / 2));
+        const k = Math.max(0, 1 - d / 260);
+        s.style.translate = `0 ${(-k * k * 22).toFixed(1)}px`;
+        s.style.rotate = `${(k * k * (s.style.getPropertyValue('--r').startsWith('-') ? -6 : 6)).toFixed(1)}deg`;
+      });
+    },
+    soltar() { this.spans.forEach(s => { s.style.translate = ''; s.style.rotate = ''; }); },
+  };
+  if (!reduzido && matchMedia('(pointer: fine)').matches) {
+    const hero = $('#topo');
+    hero.addEventListener('pointermove', e => titulo.mover(e.clientX, e.clientY));
+    hero.addEventListener('pointerleave', () => titulo.soltar());
   }
   $('#idioma').addEventListener('click', () => {
     idioma = idioma === 'pt' ? 'en' : 'pt';
@@ -90,6 +119,22 @@
       const alvo = 1 - (n - 1 - i) * .03, inicio = i / n;
       const k = Math.min(1, Math.max(0, (p - inicio) / (1 - inicio)));
       c.style.transform = `scale(${1 - (1 - alvo) * k})`;
+    });
+  }
+
+  // ---------- fotos dos cartões: a imagem desliza contra o cursor, como uma janela com profundidade ----------
+  if (!reduzido && matchMedia('(pointer: fine)').matches) {
+    const cartoes = $('#cartoes');
+    cartoes.addEventListener('pointermove', e => {
+      const f = e.target.closest('.foto'), img = f && f.querySelector('img');
+      if (!img) return;
+      const r = f.getBoundingClientRect();
+      const dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
+      img.style.transform = `scale(1.08) translate(${(-dx * 4).toFixed(2)}%, ${(-dy * 4).toFixed(2)}%)`;
+    });
+    cartoes.addEventListener('pointerout', e => {
+      const f = e.target.closest('.foto');
+      if (f && !f.contains(e.relatedTarget)) { const img = f.querySelector('img'); if (img) img.style.transform = ''; }
     });
   }
 
