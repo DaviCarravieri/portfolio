@@ -1,0 +1,4 @@
+# ferramentas do retrato (retrato/alinhar.py e retrato/embutir.py)
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+pillow==13.0.0

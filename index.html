@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Davi Carravieri — Portfólio</title>
+<meta name="description" content="Portfólio de Davi Carravieri: apps, sites, IA, ensino de VR e drones e impressão 3D.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<main class="pagina">
+
+  <!-- 1. ABERTURA -->
+  <section class="hero" id="topo">
+    <nav class="nav fade" data-y="-20">
+      <a href="#sobre" data-t="nav.0">Sobre</a>
+      <a href="#servicos" data-t="nav.1">Serviços</a>
+      <a href="#projetos" data-t="nav.2">Projetos</a>
+      <a href="#contato" data-t="nav.3">Contato</a>
+      <button class="idioma" id="idioma" type="button" data-t="idioma_botao" data-t-label="idioma_rotulo">EN</button>
+    </nav>
+    <div class="hero-titulo-caixa">
+      <h1 class="hero-titulo gradiente fade" data-delay=".15" data-y="40">Hi, i&rsquo;m Davi</h1>
+    </div>
+    <div class="hero-base">
+      <p class="hero-frase fade" data-delay=".35" data-y="20" data-t="hero_frase"></p>
+      <a class="botao-contato fade" data-delay=".5" data-y="20" href="#contato" data-t="contato">Fale comigo</a>
+    </div>
+
+    <div class="hero-portrait-wrap" id="magnetWrap">
+      <div class="hero-portrait-inner fade" id="magnetInner" data-delay=".6" data-y="30">
+        <img id="faceFallback" src="retrato/2-mae/rest.png" alt="Retrato 3D do Davi" />
+        <canvas id="faceGl" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FAIXAS DE IMAGENS -->
+  <section class="faixas" id="faixas" aria-hidden="true">
+    <div class="faixa" id="faixa1"></div>
+    <div class="faixa" id="faixa2"></div>
+  </section>
+
+  <!-- 3. SOBRE MIM -->
+  <section class="sobre" id="sobre">
+    <!-- objetos 3D nos cantos (imagens/decoracao/); se a imagem não existir, o canto fica vazio -->
+    <img class="deco deco-1 fade" data-x="-80" data-y="0" data-delay=".1" src="imagens/decoracao/vr.webp" alt="" onerror="this.remove()">
+    <img class="deco deco-2 fade" data-x="80" data-y="0" data-delay=".15" src="imagens/decoracao/drone.webp" alt="" onerror="this.remove()">
+    <img class="deco deco-3 fade" data-x="-80" data-y="0" data-delay=".25" src="imagens/decoracao/impressora.webp" alt="" onerror="this.remove()">
+    <img class="deco deco-4 fade" data-x="80" data-y="0" data-delay=".3" src="imagens/decoracao/celular.webp" alt="" onerror="this.remove()">
+    <h2 class="titulo-secao gradiente fade" data-y="40" data-t="sobre_titulo">Sobre mim</h2>
+    <p class="texto-letras" id="sobreTexto" data-t="sobre_texto"></p>
+    <a class="botao-contato fade" href="#contato" data-t="contato">Fale comigo</a>
+  </section>
+
+  <!-- 4. SERVIÇOS -->
+  <section class="servicos" id="servicos">
+    <h2 class="titulo-secao escuro fade" data-y="40" data-t="servicos_titulo">O que eu faço</h2>
+    <ol class="lista-servicos" id="listaServicos"></ol>
+  </section>
+
+  <!-- 5. PROJETOS -->
+  <section class="projetos" id="projetos">
+    <h2 class="titulo-secao gradiente fade" data-y="40" data-t="projetos_titulo">Projetos</h2>
+    <div class="cartoes" id="cartoes"></div>
+  </section>
+
+  <!-- 6. JARDIM DE LUZ + CONTATO -->
+  <section class="jardim" id="contato">
+    <canvas id="flores" aria-hidden="true"></canvas>
+    <div class="jardim-conteudo">
+      <h2 class="titulo-secao gradiente-claro fade" data-y="40" data-t="final_titulo">Vamos conversar?</h2>
+      <div class="links-contato fade" data-delay=".15" id="linksContato"></div>
+      <p class="jardim-dica" data-t="final_dica"></p>
+    </div>
+    <footer class="rodape" data-t="rodape">Feito por Davi Carravieri</footer>
+  </section>
+
+</main>
+
+<!-- textos (edite aqui) -->
+<script src="js/conteudo.js"></script>
+<!-- imagens do retrato embutidas, usadas só quando o site é aberto com dois cliques -->
+<script src="retrato/imagens.js"></script>
+<script src="js/retrato.js"></script>
+<script src="js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/flores.js"></script>
+</body>
+</html>

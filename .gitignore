@@ -1,0 +1,5 @@
+# foto original (pessoal, não sobe)
+retrato/1-foto/
+# ambiente Python local
+.venv/
+__pycache__/
