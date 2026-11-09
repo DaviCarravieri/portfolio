@@ -30,13 +30,24 @@ Depois abra http://localhost:8766.
 |---|---|
 | `index.html` | A página |
 | `css/site.css` | Estilos |
-| `js/conteudo.js` | **Todos os textos (PT/EN), links de contato e listas de fotos.** É aqui que se edita o conteúdo. |
-| `js/site.js` | Idioma, seções, animações de rolagem e a física dos objetos em gravidade zero |
+| `js/conteudo.js` | **Todo o conteúdo (PT/EN): textos, contatos, projetos, experiências e mídias.** É aqui que se edita o site. |
+| `js/site.js` | Idioma, menu, seções geradas, estudo de caso, animações de rolagem e a física dos objetos em gravidade zero |
 | `js/retrato.js` | Motor do retrato vivo (WebGL) |
 | `js/flores.js` | Jardim de luz (Three.js r128) |
 | `imagens/` | Fotos dos projetos e objetos 3D decorativos |
 | `retrato/` | Imagens do retrato e as ferramentas que as produziram |
 | `referencias/` | Referências usadas no projeto |
+
+## Como adicionar projetos, experiências e fotos
+
+Tudo fica em `js/conteudo.js`:
+
+- **Projeto novo:** copie um item de `window.PROJETOS` e preencha. Campos vazios (`''` ou `[]`) não aparecem. O botão "Ver estudo de caso" só surge quando há contexto, desafio, processo, participação, resultado ou mais de uma mídia. Use `pendente: true` para projetos ainda sem conteúdo: eles aparecem só numa lista simples, sem botões.
+- **Experiência nova:** copie um item de `window.EXPERIENCIAS`.
+- **Fotos e vídeos:** coloque em `imagens/<projeto>/` e liste em `midia`. A primeira mídia vira a capa do cartão, e as outras formam a galeria do estudo de caso. Vídeos (`.mp4`/`.webm`) tocam mudos em loop na capa.
+- **Faixa em movimento:** liste fotos em `window.FAIXAS`. Vazia, ela mostra as quatro frentes de atuação em texto.
+
+Prefira WebP ou JPG com até 1600 px no lado maior e vídeos curtos e comprimidos, para o site continuar leve.
 
 ## Como o retrato vivo foi feito
 
@@ -45,7 +56,7 @@ Cada expressão é uma imagem inteira, não um efeito de código. O código só 
 1. **Imagem-mãe** (`retrato/2-mae/rest.png`): uma versão 3D do meu rosto, gerada no ChatGPT a partir de uma foto.
 2. **Expressões** (`retrato/3-chatgpt/`): cada uma é uma edição da imagem-mãe, feita numa conversa nova do ChatGPT, selecionando só a área que muda (olhos ou boca). O passo a passo e os prompts estão em [`retrato/GUIA.md`](retrato/GUIA.md).
 3. **Alinhamento** (`retrato/alinhar.py`): encontra pontos em comum com a imagem-mãe (ORB + RANSAC), corrige posição, escala, rotação e cor, e só troca a área do rosto que mudou. Cabelo, orelhas e contorno ficam sempre os da mãe, para nada "pular" na troca. Saída em `retrato/4-alinhadas/`.
-4. **Embutir** (`retrato/embutir.py`): coloca as imagens dentro de `retrato/imagens.js`. Sem isso, o navegador não deixa o WebGL ler as imagens quando o site é aberto com dois cliques.
+4. **Versões leves e embutidas** (`retrato/embutir.py`): gera `retrato/web/*.webp` (cerca de 200 KB cada, usadas pelo site online; os PNG originais somavam 15 MB) e `retrato/imagens.js`, com as mesmas imagens embutidas. O `imagens.js` só é carregado quando o site é aberto com dois cliques, porque nesse caso o navegador não deixa o WebGL ler arquivos soltos.
 5. **Testes:** `retrato/teste.html` alterna as imagens para conferir se algo "pula", e `retrato/prototipo.html` é o primeiro protótipo do rosto seguindo o mouse.
 
 `retrato/olhares.py` e `retrato/5-olhares/` são uma tentativa que não deu certo: mover a íris por código gerava manchas. Os olhares passaram a vir do ChatGPT.

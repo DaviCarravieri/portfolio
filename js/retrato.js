@@ -2,13 +2,12 @@
   // Adaptado do motor do Living Portrait: cada expressão é uma imagem inteira e alinhada;
   // o código só escolhe qual mostrar e faz a "pele" se mexer.
   (() => {
+    // versões leves (WebP 1024 px) geradas por retrato/embutir.py a partir das imagens alinhadas
+    const W = n => 'retrato/web/' + n + '.webp';
     let IDS = {
-      rest: 'retrato/2-mae/rest.png',
-      kiss: 'retrato/4-alinhadas/kiss.png',
-      desconfiado: 'retrato/4-alinhadas/desconfiado.png',
-      e: 'retrato/4-alinhadas/olhar-e.png', ne: 'retrato/4-alinhadas/olhar-ne.png', n: 'retrato/4-alinhadas/olhar-n.png', nw: 'retrato/4-alinhadas/olhar-nw.png',
-      w: 'retrato/4-alinhadas/olhar-w.png', sw: 'retrato/4-alinhadas/olhar-sw.png', s: 'retrato/4-alinhadas/olhar-s.png', se: 'retrato/4-alinhadas/olhar-se.png',
-      // half: 'retrato/4-alinhadas/half.png', closed: 'retrato/4-alinhadas/closed.png',   // entram quando existirem
+      rest: W('rest'), kiss: W('kiss'), desconfiado: W('desconfiado'),
+      e: W('e'), ne: W('ne'), n: W('n'), nw: W('nw'), w: W('w'), sw: W('sw'), s: W('s'), se: W('se'),
+      // half: W('half'), closed: W('closed'),   // piscadas: entram quando existirem
     };
     // aberto com dois cliques (file://), o WebGL só aceita as imagens embutidas
     if ((location.protocol === 'file:' || location.search.includes('embutido')) && window.RETRATO_IMGS) IDS = {...window.RETRATO_IMGS};

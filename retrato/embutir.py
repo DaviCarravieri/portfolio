@@ -1,4 +1,4 @@
-"""Gera retrato/imagens.js com todas as imagens do retrato dentro do arquivo (base64, WebP).
+"""Gera retrato/web/*.webp (versões leves para o site online) e retrato/imagens.js com todas as imagens do retrato dentro do arquivo (base64, WebP).
 
 Assim o prototipo.html funciona completo (com a pele elástica) mesmo aberto com dois cliques,
 porque o navegador não deixa o WebGL ler imagens soltas do disco, mas deixa ler imagens embutidas.
@@ -22,6 +22,8 @@ IMAGENS = {
     "closed": "4-alinhadas/closed.png",
 }
 
+WEB = RAIZ / "web"          # versões leves usadas pelo site online
+WEB.mkdir(exist_ok=True)
 linhas = []
 for nome, caminho in IMAGENS.items():
     arq = RAIZ / caminho
@@ -31,6 +33,7 @@ for nome, caminho in IMAGENS.items():
     img = Image.open(arq).convert("RGBA").resize((1024, 1024), Image.LANCZOS)
     buf = io.BytesIO()
     img.save(buf, "WEBP", quality=92, method=6)
+    (WEB / f"{nome}.webp").write_bytes(buf.getvalue())
     linhas.append(f'  {nome}: "data:image/webp;base64,{base64.b64encode(buf.getvalue()).decode()}",')
     print(f"{nome}: {buf.tell() // 1024} KB")
 

@@ -2,92 +2,159 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Davi Carravieri — Portfólio</title>
-<meta name="description" content="Portfólio de Davi Carravieri: apps, sites, IA, ensino de VR e drones e impressão 3D.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Davi Carravieri — Tecnologia, design e inovação</title>
+<meta name="description" content="Portfólio de Davi Carravieri: experiências digitais, inteligência artificial, fabricação digital e educação tecnológica.">
+<meta name="author" content="Davi Carravieri">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="canonical" href="https://davicarravieri.github.io/portfolio/">
+<!-- compartilhamento (LinkedIn, WhatsApp, X) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Davi Carravieri">
+<meta property="og:title" content="Davi Carravieri — Tecnologia, design e inovação">
+<meta property="og:description" content="Ideias que conectam o digital ao mundo real.">
+<meta property="og:url" content="https://davicarravieri.github.io/portfolio/">
+<meta property="og:image" content="https://davicarravieri.github.io/portfolio/imagens/compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c0c0c'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23d7e2ea'%3EDC%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Person", "name": "Davi Carravieri", "url": "https://davicarravieri.github.io/portfolio/",
+ "sameAs": ["https://www.linkedin.com/in/davi-carravieri-29508b318", "https://github.com/DaviCarravieri", "https://www.instagram.com/davicarravieri"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="retrato/web/rest.webp" type="image/webp">
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<main class="pagina">
+<a class="pular" href="#conteudo" data-t="pular">Pular para o conteúdo</a>
 
-  <!-- 1. ABERTURA -->
-  <section class="hero" id="topo">
-    <nav class="nav fade" data-y="-20">
-      <a href="#sobre" data-t="nav.0">Sobre</a>
-      <a href="#servicos" data-t="nav.1">Serviços</a>
-      <a href="#projetos" data-t="nav.2">Projetos</a>
-      <a href="#contato" data-t="nav.3">Contato</a>
-      <button class="idioma" id="idioma" type="button" data-t="idioma_botao" data-t-label="idioma_rotulo">EN</button>
-    </nav>
-    <div class="hero-titulo-caixa">
-      <h1 class="hero-titulo gradiente fade" data-delay=".15" data-y="40">Hi, i&rsquo;m Davi</h1>
-    </div>
-    <div class="hero-base">
-      <p class="hero-frase fade" data-delay=".35" data-y="20" data-t="hero_frase"></p>
-      <a class="botao-contato fade" data-delay=".5" data-y="20" href="#contato" data-t="contato">Fale comigo</a>
-    </div>
+<!-- MENU -->
+<header class="topo" id="topo">
+  <a class="marca" href="#inicio" aria-label="Davi Carravieri">DC</a>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <ul>
+      <li><a href="#inicio" data-t="nav.inicio">Início</a></li>
+      <li><a href="#atuacao" data-t="nav.atuacao">Atuação</a></li>
+      <li><a href="#projetos" data-t="nav.projetos">Projetos</a></li>
+      <li><a href="#experiencias" data-t="nav.experiencias">Experiências</a></li>
+      <li><a href="#sobre" data-t="nav.sobre">Sobre</a></li>
+      <li><a href="#contato" data-t="nav.contato">Contato</a></li>
+    </ul>
+  </nav>
+  <div class="topo-acoes">
+    <button class="idioma" id="idioma" type="button" data-t="idioma_botao" data-t-label="idioma_rotulo">EN</button>
+    <button class="menu-botao" id="menuBotao" type="button" aria-expanded="false" aria-controls="menu" data-t-label="menu_abrir">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
 
-    <div class="hero-portrait-wrap" id="magnetWrap">
-      <div class="hero-portrait-inner fade" id="magnetInner" data-delay=".6" data-y="30">
-        <img id="faceFallback" src="retrato/2-mae/rest.png" alt="Retrato 3D do Davi" />
-        <canvas id="faceGl" aria-hidden="true"></canvas>
+<main class="pagina" id="conteudo">
+
+  <!-- 01. INÍCIO -->
+  <section class="hero" id="inicio" aria-labelledby="heroNome">
+    <h1 class="hero-nome gradiente fade" id="heroNome" data-y="40"><span>Davi</span> <span>Carravieri</span></h1>
+
+    <div class="hero-retrato">
+      <div class="hero-portrait-wrap" id="magnetWrap">
+        <div class="hero-portrait-inner fade" id="magnetInner" data-delay=".35" data-y="30">
+          <img id="faceFallback" src="retrato/web/rest.webp" width="1024" height="1024" alt="Retrato 3D de Davi Carravieri" fetchpriority="high">
+          <canvas id="faceGl" aria-hidden="true"></canvas>
+        </div>
       </div>
     </div>
+
+    <div class="hero-texto">
+      <p class="rotulo fade" data-delay=".15" data-y="20" data-t="hero_area">Tecnologia · Design · Inovação</p>
+      <p class="hero-frase fade" data-delay=".25" data-y="20" data-t="hero_frase">Ideias que conectam o digital ao mundo real.</p>
+      <p class="hero-desc fade" data-delay=".35" data-y="20" data-t="hero_desc"></p>
+      <div class="hero-acoes fade" data-delay=".45" data-y="20">
+        <a class="botao botao-principal" href="#projetos" data-t="hero_projetos">Ver projetos</a>
+        <a class="botao botao-linha" href="#contato" data-t="hero_contato">Contato</a>
+      </div>
+    </div>
+    <a class="hero-rolar" href="#atuacao" aria-hidden="true" tabindex="-1"><span data-t="hero_rolar">Role para explorar</span></a>
   </section>
 
-  <!-- 2. FAIXAS DE IMAGENS -->
-  <section class="faixas" id="faixas" aria-hidden="true">
+  <!-- faixa em movimento: texto agora, fotos depois (window.FAIXAS) -->
+  <div class="faixas" id="faixas" aria-hidden="true">
     <div class="faixa" id="faixa1"></div>
     <div class="faixa" id="faixa2"></div>
+  </div>
+
+  <!-- 02. ATUAÇÃO -->
+  <section class="atuacao" id="atuacao" aria-labelledby="atuacaoTitulo">
+    <div class="cabeca">
+      <p class="indice">(01)</p>
+      <h2 class="titulo fade" id="atuacaoTitulo" data-t="atuacao_titulo"></h2>
+      <p class="intro fade" data-delay=".1" data-t="atuacao_texto"></p>
+    </div>
+    <ol class="frentes" id="frentes"></ol>
   </section>
 
-  <!-- 3. SOBRE MIM -->
-  <section class="sobre" id="sobre">
-    <!-- objetos 3D nos cantos (imagens/decoracao/); se a imagem não existir, o canto fica vazio -->
+  <!-- 03. PROJETOS -->
+  <section class="projetos" id="projetos" aria-labelledby="projetosTitulo">
+    <div class="cabeca">
+      <p class="indice">(02)</p>
+      <h2 class="titulo gradiente fade" id="projetosTitulo" data-t="projetos_titulo"></h2>
+      <p class="intro fade" data-delay=".1" data-t="projetos_texto"></p>
+    </div>
+    <div class="cartoes" id="cartoes"></div>
+    <div class="outros" id="outros"></div>
+  </section>
+
+  <!-- 04. EXPERIÊNCIAS -->
+  <section class="experiencias" id="experiencias" aria-labelledby="expTitulo">
+    <div class="cabeca cabeca-lado">
+      <p class="indice">(03)</p>
+      <h2 class="titulo gradiente fade" id="expTitulo" data-t="exp_titulo"></h2>
+      <p class="intro fade" data-delay=".1" data-t="exp_texto"></p>
+    </div>
+    <ol class="linha-tempo" id="linhaTempo"></ol>
+  </section>
+
+  <!-- 05. SOBRE -->
+  <section class="sobre" id="sobre" aria-labelledby="sobreTitulo">
+    <!-- objetos 3D em gravidade zero (imagens/decoracao/); se a imagem não existir, o canto fica vazio -->
     <img class="deco deco-1 fade" data-x="-80" data-y="0" data-delay=".1" src="imagens/decoracao/vr.webp" alt="" onerror="this.remove()">
     <img class="deco deco-2 fade" data-x="80" data-y="0" data-delay=".15" src="imagens/decoracao/drone.webp" alt="" onerror="this.remove()">
     <img class="deco deco-3 fade" data-x="-80" data-y="0" data-delay=".25" src="imagens/decoracao/impressora.webp" alt="" onerror="this.remove()">
     <img class="deco deco-4 fade" data-x="80" data-y="0" data-delay=".3" src="imagens/decoracao/celular.webp" alt="" onerror="this.remove()">
-    <h2 class="titulo-secao gradiente fade" data-y="40" data-t="sobre_titulo">Sobre mim</h2>
-    <p class="texto-letras" id="sobreTexto" data-t="sobre_texto"></p>
-    <a class="botao-contato fade" href="#contato" data-t="contato">Fale comigo</a>
+    <p class="indice">(04)</p>
+    <h2 class="titulo-grande gradiente fade" id="sobreTitulo" data-y="40" data-t="sobre_titulo">Sobre</h2>
+    <p class="texto-letras" id="sobreTexto"></p>
+    <p class="sobre-dica" data-t="sobre_dica"></p>
   </section>
 
-  <!-- 4. SERVIÇOS -->
-  <section class="servicos" id="servicos">
-    <h2 class="titulo-secao escuro fade" data-y="40" data-t="servicos_titulo">O que eu faço</h2>
-    <ol class="lista-servicos" id="listaServicos"></ol>
-  </section>
-
-  <!-- 5. PROJETOS -->
-  <section class="projetos" id="projetos">
-    <h2 class="titulo-secao gradiente fade" data-y="40" data-t="projetos_titulo">Projetos</h2>
-    <div class="cartoes" id="cartoes"></div>
-  </section>
-
-  <!-- 6. JARDIM DE LUZ + CONTATO -->
-  <section class="jardim" id="contato">
+  <!-- 06. CONTATO + JARDIM DE LUZ -->
+  <section class="jardim" id="contato" aria-labelledby="contatoTitulo">
     <canvas id="flores" aria-hidden="true"></canvas>
     <div class="jardim-conteudo">
-      <h2 class="titulo-secao gradiente-claro fade" data-y="40" data-t="final_titulo">Vamos conversar?</h2>
-      <div class="links-contato fade" data-delay=".15" id="linksContato"></div>
-      <p class="jardim-dica" data-t="final_dica"></p>
+      <p class="indice">(05)</p>
+      <h2 class="titulo-contato gradiente-claro fade" id="contatoTitulo" data-y="40" data-t="contato_titulo"></h2>
+      <p class="intro fade" data-delay=".1" data-t="contato_texto"></p>
+      <ul class="canais fade" data-delay=".2" id="canais"></ul>
     </div>
-    <footer class="rodape" data-t="rodape">Feito por Davi Carravieri</footer>
+    <footer class="rodape">
+      <span>© 2026 <span data-t="rodape">Davi Carravieri</span></span>
+      <span class="jardim-dica" data-t="final_dica"></span>
+      <a href="#inicio" data-t="voltar_topo">Voltar ao topo</a>
+    </footer>
   </section>
 
 </main>
 
-<!-- textos (edite aqui) -->
+<!-- conteúdo (edite aqui) -->
 <script src="js/conteudo.js"></script>
-<!-- imagens do retrato embutidas, usadas só quando o site é aberto com dois cliques -->
-<script src="retrato/imagens.js"></script>
+<!-- imagens do retrato embutidas: só quando o site é aberto com dois cliques (file://) -->
+<script>if (location.protocol === 'file:') document.write('<script src="retrato/imagens.js"><\/script>');</script>
 <script src="js/retrato.js"></script>
 <script src="js/site.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="js/flores.js"></script>
 </body>
 </html>
