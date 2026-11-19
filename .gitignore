@@ -3,3 +3,6 @@ retrato/1-foto/
 # ambiente Python local
 .venv/
 __pycache__/
+
+# checklist pessoal (não sobe)
+PROXIMOS-PASSOS.md

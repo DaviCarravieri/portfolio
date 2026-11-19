@@ -6,6 +6,9 @@
 //   midia: [{src: 'imagens/megapost/tela-1.webp', alt: 'Tela de agendamento'},
 //           {src: 'imagens/megapost/demo.mp4', tipo: 'video', poster: 'imagens/megapost/demo.webp', alt: 'Demonstração'}]
 // A primeira mídia vira a capa do projeto. Sem mídia, o site mostra uma capa tipográfica.
+// No estudo de caso (tela que rola para o lado), cada mídia vira um passo com imagem + texto.
+//   Para escrever o texto de um passo, acrescente na mídia:  titulo: {pt: '', en: ''}, texto: {pt: '', en: ''}
+//   Sem "titulo", aparece a descrição da imagem (alt). Sem "texto", o passo mostra só o título.
 
 window.LINKS = {
   linkedin: {url: 'https://www.linkedin.com/in/davi-carravieri-29508b318', rotulo: 'davi-carravieri'},
@@ -74,6 +77,7 @@ window.PROJETOS = [
     participacao: {pt: '', en: ''},
     resultado: {pt: '', en: ''},
     midia: [   // a primeira vira a capa
+      {src: 'imagens/megapost/demonstracao.mp4', tipo: 'video', poster: 'imagens/megapost/demonstracao.webp', alt: {pt: 'Vídeo de demonstração do MegaPost: enviar vídeos, programar horários, ver o calendário e acompanhar os resultados', en: 'MegaPost demo video: uploading videos, scheduling times, viewing the calendar and tracking results'}},
       {src: 'imagens/megapost/calendario.webp', alt: {pt: 'Calendário do MegaPost com os Reels agendados e publicados do mês', en: 'MegaPost calendar with the month’s scheduled and published Reels'}, inteira: true},
       {src: 'imagens/megapost/painel.webp', alt: {pt: 'Painel do MegaPost com a fila de próximos posts e a atividade recente', en: 'MegaPost dashboard with the upcoming posts queue and recent activity'}, inteira: true},
       {src: 'imagens/megapost/analises.webp', alt: {pt: 'Tela de análises com visualizações, alcance e interações da conta', en: 'Analytics screen with the account’s views, reach and interactions'}, inteira: true},
@@ -97,6 +101,7 @@ window.PROJETOS = [
     participacao: {pt: '', en: ''},
     resultado: {pt: '', en: ''},
     midia: [   // a primeira vira a capa
+      {src: 'imagens/paint-to-print/workshop.mp4', tipo: 'video', poster: 'imagens/paint-to-print/workshop.webp', alt: {pt: 'Vídeo do passo a passo do workshop: do desenho no papel ao modelo 3D pronto para imprimir', en: 'Workshop walkthrough video: from a paper drawing to a 3D model ready to print'}},
       {src: 'imagens/paint-to-print/inicio.webp', alt: {pt: 'Página inicial do Paint to Print com o passo a passo do workshop', en: 'Paint to Print home page with the workshop step by step'}, inteira: true},
       {src: 'imagens/paint-to-print/celular.webp', alt: {pt: 'Paint to Print no celular: copiar o prompt, usar o Gemini e transformar em 3D', en: 'Paint to Print on a phone: copy the prompt, use Gemini and turn it into 3D'}, inteira: true},
       {src: 'imagens/paint-to-print/makerworld.webp', alt: {pt: 'Ferramenta de imagem para modelo 3D com personagens gerados', en: 'Image-to-3D-model tool with generated characters'}, inteira: true},
@@ -164,8 +169,8 @@ window.EXPERIENCIAS = [
     periodo: {pt: 'Desde maio de 2025', en: 'Since May 2025'},
     papel: {pt: 'Educação tecnológica', en: 'Technology education'},
     atividades: {
-      pt: 'Aulas práticas de realidade virtual e de pilotagem de drones, aproximando jovens da tecnologia por meio da experimentação.',
-      en: 'Hands-on virtual reality and drone piloting classes, bringing young people closer to technology through experimentation.',
+      pt: 'Aulas práticas de realidade virtual e de pilotagem de drones, aproximando jovens da tecnologia por meio da experimentação. As turmas costumam ter de 20 a 30 pessoas.',
+      en: 'Hands-on virtual reality and drone piloting classes, bringing young people closer to technology through experimentation. Classes usually have 20 to 30 people.',
     },
     tecnologias: {pt: ['Realidade virtual', 'Drones', 'Cultura maker', 'Fabricação digital'], en: ['Virtual reality', 'Drones', 'Maker culture', 'Digital fabrication']},
     aprendizados: {pt: '', en: ''},
@@ -264,6 +269,7 @@ window.TEXTOS = {
     projetos_outros: 'Também em desenvolvimento',
     rotulos: {contexto: 'Contexto', desafio: 'Desafio', processo: 'Processo', tecnologias: 'Tecnologias', participacao: 'Minha participação', resultado: 'Resultado', atividades: 'Atividades', aprendizados: 'Aprendizados'},
     estudo_abrir: 'Ver estudo de caso', estudo_fechar: 'Fechar estudo de caso',
+    caso_rolar: 'Role para explorar', caso_proximo: 'Próximo projeto', caso_voltar: 'Voltar aos projetos',
     link_demo: 'Ver site', link_repo: 'Repositório',
 
     exp_titulo: 'Experiências que constroem conhecimento.',
@@ -311,6 +317,7 @@ window.TEXTOS = {
     projetos_outros: 'Also in progress',
     rotulos: {contexto: 'Context', desafio: 'Challenge', processo: 'Process', tecnologias: 'Technologies', participacao: 'My role', resultado: 'Outcome', atividades: 'Activities', aprendizados: 'Learnings'},
     estudo_abrir: 'Read case study', estudo_fechar: 'Close case study',
+    caso_rolar: 'Scroll to explore', caso_proximo: 'Next project', caso_voltar: 'Back to projects',
     link_demo: 'Live site', link_repo: 'Repository',
 
     exp_titulo: 'Experience that builds knowledge.',

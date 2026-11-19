@@ -25,6 +25,7 @@
     menu.rotular();
     montarFrentes(); montarProjetos(); montarExperiencias(); montarCertificados(); montarContato(); montarFaixas(); letras.preparar();
     observarFades(); aoRolar();
+    if (casoId) { const y = caso.scrollTop; montarCaso(P.find(q => q.id === casoId)); medirCaso(); caso.scrollTop = y; }
   }
   $('#idioma').addEventListener('click', () => {
     idioma = idioma === 'pt' ? 'en' : 'pt';
@@ -137,32 +138,163 @@
     });
   }
 
-  // estudo de caso em uma janela (<dialog>)
-  const dialogo = document.createElement('dialog');
-  dialogo.className = 'estudo';
-  document.body.append(dialogo);
-  let origem = null;
-  function abrirEstudo(id, botao) {
-    const p = P.find(x => x.id === id), x = t();
-    if (!p) return;
-    origem = botao;
-    const campos = CAMPOS.filter(c => tem(p[c])).map(c => `<div class="${c === 'processo' ? 'largo' : ''}"><dt class="rotulo">${x.rotulos[c]}</dt><dd>${esc(tx(p[c]))}</dd></div>`).join('');
-    dialogo.setAttribute('aria-labelledby', 'estudoTitulo');
-    dialogo.innerHTML = `<div class="estudo-corpo">
-      <div class="estudo-topo"><div><p class="rotulo">${esc(tx(p.categoria))}</p><h2 id="estudoTitulo">${esc(tx(p.nome))}</h2></div>
-        <button class="estudo-fechar" type="button" aria-label="${x.estudo_fechar}">×</button></div>
-      ${tem(p.descricao) ? `<p class="intro">${esc(tx(p.descricao))}</p>` : ''}
-      <dl class="estudo-campos">${campos}
-        ${(p.tecnologias || []).length ? `<div class="largo"><dt class="rotulo">${x.rotulos.tecnologias}</dt><dd><ul class="etiquetas">${p.tecnologias.map(s => `<li>${esc(s)}</li>`).join('')}</ul></dd></div>` : ''}</dl>
-      ${(p.midia || []).length ? galeria(p.midia) : ''}
-      ${linksHTML(p) ? `<div class="cartao-acoes">${linksHTML(p)}</div>` : ''}
-    </div>`;
-    dialogo.querySelector('.estudo-fechar').addEventListener('click', () => dialogo.close());
-    dialogo.showModal();
+  // ---------- estudo de caso: o cartão dá zoom e abre uma tela cheia que rola para o lado ----------
+  // A tela é um contêiner com rolagem vertical normal (roda do mouse, toque, teclado);
+  // o código converte essa rolagem em deslocamento horizontal da trilha de painéis.
+  const caso = document.createElement('div');
+  caso.className = 'caso';
+  caso.setAttribute('role', 'dialog');
+  caso.setAttribute('aria-modal', 'true');
+  caso.setAttribute('aria-labelledby', 'casoTitulo');
+  caso.tabIndex = -1;
+  caso.hidden = true;
+  document.body.append(caso);
+  let casoId = null, origem = null, comHistorico = false, fechando = false, rolagemPagina = 0;
+
+  const num = n => String(n).padStart(2, '0');
+  function midiaCaso(m, fundo) {
+    const alt = esc(tx(m.alt) || '');
+    if (ehVideo(m)) return `<video src="${esc(m.src)}" ${m.poster ? `poster="${esc(m.poster)}"` : ''} muted loop playsinline autoplay preload="auto" ${fundo ? 'aria-hidden="true"' : `aria-label="${alt}"`}></video>`;
+    return `<img src="${esc(m.src)}" alt="${fundo ? '' : alt}" decoding="async">`;
   }
-  dialogo.addEventListener('click', e => { if (e.target === dialogo) dialogo.close(); });
-  dialogo.addEventListener('close', () => { dialogo.innerHTML = ''; if (origem) origem.focus(); });
-  $('#cartoes').addEventListener('click', e => { const b = e.target.closest('[data-estudo]'); if (b) abrirEstudo(b.dataset.estudo, b); });
+  function montarCaso(p) {
+    const x = t(), midias = p.midia || [], completos = P.filter(q => !q.pendente);
+    const prox = completos[(completos.indexOf(p) + 1) % completos.length];
+    const campos = CAMPOS.filter(c => tem(p[c]));
+    const passos = midias.map((m, i) => `
+      <section class="caso-painel caso-passo${i % 2 ? ' invertido' : ''}">
+        <figure class="caso-fig${m.inteira ? ' inteira' : ''}">${midiaCaso(m, false)}</figure>
+        <div class="caso-texto">
+          <span class="caso-num" aria-hidden="true">${num(i + 1)} / ${num(midias.length)}</span>
+          <h3>${esc(tx(m.titulo) || tx(m.alt) || '')}</h3>
+          ${tem(m.texto) ? `<p>${esc(tx(m.texto))}</p>` : ''}
+        </div>
+      </section>`).join('');
+    caso.innerHTML = `
+      <div class="caso-barra">
+        <span class="rotulo">${esc(tx(p.categoria))}</span>
+        <button class="caso-fechar" type="button" aria-label="${x.estudo_fechar}"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="caso-palco"><div class="caso-trilha">
+        <section class="caso-painel caso-abertura">
+          ${midias[0] ? `<div class="caso-fundo">${midiaCaso(midias[0], true)}</div>` : ''}
+          <h2 class="caso-titulo" id="casoTitulo">${esc(tx(p.nome))}</h2>
+          <div class="caso-intro">
+            ${tem(p.descricao) ? `<p>${esc(tx(p.descricao))}</p>` : ''}
+            ${(p.tecnologias || []).length ? `<ul class="etiquetas">${p.tecnologias.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
+            ${linksHTML(p) ? `<div class="cartao-acoes">${linksHTML(p)}</div>` : ''}
+            <p class="caso-dica" aria-hidden="true">${x.caso_rolar}</p>
+          </div>
+        </section>
+        ${campos.length ? `<section class="caso-painel caso-campos"><dl>${campos.map(c => `<div><dt class="rotulo">${x.rotulos[c]}</dt><dd>${esc(tx(p[c]))}</dd></div>`).join('')}</dl></section>` : ''}
+        ${passos}
+        <section class="caso-painel caso-fim">
+          ${prox && prox !== p ? `<p class="rotulo">${x.caso_proximo}</p><button class="caso-proximo" type="button" data-caso="${esc(prox.id)}">${esc(tx(prox.nome))} <span aria-hidden="true">→</span></button>` : ''}
+          <button class="botao botao-linha caso-voltar" type="button">${x.caso_voltar}</button>
+        </section>
+      </div></div>
+      <div class="caso-progresso" aria-hidden="true"><span></span></div>`;
+    caso.querySelectorAll('img, video').forEach(el => el.addEventListener(el.tagName === 'IMG' ? 'load' : 'loadedmetadata', medirCaso));
+  }
+
+  // altura da rolagem = largura da trilha; a trilha fica presa na tela e anda para o lado
+  function medirCaso() {
+    const trilha = caso.querySelector('.caso-trilha'), palco = caso.querySelector('.caso-palco');
+    if (!trilha) return;
+    palco.style.height = (trilha.scrollWidth - innerWidth + innerHeight) + 'px';
+    rolarCaso();
+  }
+  let casoPedido = false;
+  function rolarCaso() {
+    casoPedido = false;
+    const trilha = caso.querySelector('.caso-trilha');
+    if (!trilha) return;
+    const max = Math.max(1, caso.scrollHeight - innerHeight), y = Math.min(caso.scrollTop, max);
+    trilha.style.transform = `translate3d(${-y}px, 0, 0)`;
+    caso.querySelector('.caso-progresso span').style.transform = `scaleX(${y / max})`;
+    const w = innerWidth;
+    caso.querySelectorAll('.caso-passo').forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.left < w * .82) s.classList.add('visto');
+      // leve paralaxe: a imagem anda um pouco mais devagar que o painel
+      const m = s.querySelector('.caso-fig > *');
+      if (m && !reduzido) m.style.transform = `translate3d(${Math.max(-1, Math.min(1, (r.left + r.width / 2 - w / 2) / w)) * -2.5}%, 0, 0) scale(1.06)`;
+    });
+  }
+  caso.addEventListener('scroll', () => { if (!casoPedido) { casoPedido = true; requestAnimationFrame(rolarCaso); } }, {passive: true});
+  // gesto lateral do trackpad e setas também avançam
+  caso.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { caso.scrollTop += e.deltaX; e.preventDefault(); } }, {passive: false});
+  caso.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.preventDefault(); fecharCaso(); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { if (e.target.closest('button, a')) return; e.preventDefault(); caso.scrollBy({top: (e.key === 'ArrowRight' ? 1 : -1) * innerWidth * .6, behavior: reduzido ? 'auto' : 'smooth'}); }
+    else if (e.key === 'Tab') {   // mantém o foco dentro da tela
+      const f = [...caso.querySelectorAll('button, a[href], video[controls]')];
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  caso.addEventListener('click', e => {
+    if (e.target.closest('.caso-fechar, .caso-voltar')) fecharCaso();
+    const b = e.target.closest('[data-caso]');
+    if (b) trocarCaso(b.dataset.caso);
+  });
+  addEventListener('resize', () => { if (casoId) medirCaso(); });
+
+  function abrirCaso(id, botao) {
+    const p = P.find(q => q.id === id);
+    if (!p || casoId) return;
+    casoId = id; origem = botao; rolagemPagina = scrollY;
+    montarCaso(p);
+    caso.hidden = false;
+    caso.scrollTop = 0;
+    document.documentElement.classList.add('caso-aberto');
+    medirCaso();
+    const capa = botao && botao.closest('.cartao') && botao.closest('.cartao').querySelector('.capa');
+    const mostrar = () => { caso.classList.add('ativo'); caso.focus({preventScroll: true}); };
+    if (capa && !reduzido) {
+      // zoom: uma cópia da capa sai do cartão e cresce até ocupar a tela inteira
+      const r = capa.getBoundingClientRect(), raio = getComputedStyle(capa).borderRadius;
+      const clone = capa.cloneNode(true);
+      clone.className = 'capa caso-zoom';
+      clone.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
+      document.body.append(clone);
+      const anim = clone.animate([
+        {left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px', borderRadius: raio},
+        {left: '0px', top: '0px', width: innerWidth + 'px', height: innerHeight + 'px', borderRadius: '0px'},
+      ], {duration: 820, easing: 'cubic-bezier(.76, 0, .24, 1)', fill: 'forwards'});
+      anim.finished.then(() => { mostrar(); setTimeout(() => clone.remove(), 650); });
+    } else mostrar();
+    try { history.pushState({caso: id}, '', '#projeto-' + id); comHistorico = true; } catch (e) { comHistorico = false; }
+  }
+  function trocarCaso(id) {
+    const p = P.find(q => q.id === id);
+    if (!p) return;
+    caso.classList.remove('ativo');
+    setTimeout(() => {
+      casoId = id;
+      montarCaso(p); caso.scrollTop = 0; medirCaso();
+      caso.classList.add('ativo'); caso.focus({preventScroll: true});
+      try { history.replaceState({caso: id}, '', '#projeto-' + id); } catch (e) {}
+    }, reduzido ? 0 : 450);
+  }
+  function fecharCaso(doHistorico) {
+    if (!casoId || fechando) return;
+    fechando = true;
+    caso.classList.remove('ativo');
+    setTimeout(() => {
+      caso.hidden = true; caso.innerHTML = '';
+      document.documentElement.classList.remove('caso-aberto');
+      document.documentElement.style.scrollBehavior = 'auto';
+      scrollTo(0, rolagemPagina);
+      document.documentElement.style.scrollBehavior = '';
+      casoId = null; fechando = false;
+      if (origem) origem.focus({preventScroll: true});
+    }, reduzido ? 0 : 500);
+    if (comHistorico && !doHistorico) { comHistorico = false; history.back(); }
+  }
+  addEventListener('popstate', () => { if (casoId) { comHistorico = false; fecharCaso(true); } });
+  $('#cartoes').addEventListener('click', e => { const b = e.target.closest('[data-estudo]'); if (b) abrirCaso(b.dataset.estudo, b); });
 
   // ---------- experiências ----------
   function montarExperiencias() {
