@@ -18,7 +18,14 @@ window.LINKS = {
 
 // fotos para a faixa que desliza entre a abertura e a Atuação (vazia = faixa só de texto)
 window.FAIXAS = [
-  // 'imagens/faixas/foto-1.webp',
+  'imagens/faixas/drone.webp',
+  'imagens/faixas/grafite-pintura.webp',
+  'imagens/faixas/cult-sp.webp',
+  'imagens/faixas/montagem-pc.webp',
+  'imagens/faixas/estudio.webp',
+  'imagens/faixas/drone-turma.webp',
+  'imagens/faixas/miniaturas.webp',
+  'imagens/faixas/grafite.webp',
 ];
 
 // ---------- PROJETOS ----------
@@ -66,29 +73,35 @@ window.PROJETOS = [
     tecnologias: ['Cloudflare Workers', 'D1', 'R2', 'TypeScript', 'JavaScript'],
     participacao: {pt: '', en: ''},
     resultado: {pt: '', en: ''},
-    midia: [
-      // {src: 'imagens/megapost/capa.webp', alt: {pt: '', en: ''}, legenda: {pt: '', en: ''}},
+    midia: [   // a primeira vira a capa
+      {src: 'imagens/megapost/calendario.webp', alt: {pt: 'Calendário do MegaPost com os Reels agendados e publicados do mês', en: 'MegaPost calendar with the month’s scheduled and published Reels'}, inteira: true},
+      {src: 'imagens/megapost/painel.webp', alt: {pt: 'Painel do MegaPost com a fila de próximos posts e a atividade recente', en: 'MegaPost dashboard with the upcoming posts queue and recent activity'}, inteira: true},
+      {src: 'imagens/megapost/analises.webp', alt: {pt: 'Tela de análises com visualizações, alcance e interações da conta', en: 'Analytics screen with the account’s views, reach and interactions'}, inteira: true},
+      {src: 'imagens/megapost/enviar-videos.webp', alt: {pt: 'Tela para enviar vídeos e definir a legenda dos próximos posts', en: 'Screen to upload videos and set the caption for the next posts'}, inteira: true},
+      {src: 'imagens/megapost/configuracoes.webp', alt: {pt: 'Configurações da conta: horários de publicação e conexão com Instagram e Facebook', en: 'Account settings: posting times and Instagram and Facebook connection'}, inteira: true},
     ],
     links: {},   // repositório privado; para um link de demonstração: demo: 'https://...'
   },
   {
-    id: 'revelando-sp',
-    nome: {pt: 'Site Revelando SP', en: 'Revelando SP website'},
-    categoria: {pt: 'Site', en: 'Website'},
+    id: 'paint-to-print',
+    nome: {pt: 'Paint to Print', en: 'Paint to Print'},
+    categoria: {pt: 'Site · IA · Impressão 3D', en: 'Website · AI · 3D printing'},
     descricao: {
-      pt: 'Site criado para os frequentadores da Fábrica de Cultura no evento Revelando SP.',
-      en: 'A website made for Fábrica de Cultura visitors during the Revelando SP event.',
+      pt: 'Site-guia do workshop de criação com IA e impressão 3D, feito para os frequentadores da Fábrica de Cultura no evento Revelando SP. Em três passos, o participante transforma o próprio desenho em imagem 3D com o Gemini e depois em um modelo 3D pronto para imprimir.',
+      en: 'A step-by-step site for an AI and 3D printing workshop, made for Fábrica de Cultura visitors during the Revelando SP event. In three steps, participants turn their own drawing into a 3D-style image with Gemini and then into a 3D model ready to print.',
     },
     contexto: {pt: '', en: ''},
     desafio: {pt: '', en: ''},
     processo: {pt: '', en: ''},
-    tecnologias: ['HTML'],
+    tecnologias: ['HTML', 'Gemini', 'Imagem para 3D', 'Impressão 3D'],
     participacao: {pt: '', en: ''},
     resultado: {pt: '', en: ''},
-    midia: [
-      // {src: 'imagens/revelando-sp/capa.webp', alt: {pt: '', en: ''}, legenda: {pt: '', en: ''}},
+    midia: [   // a primeira vira a capa
+      {src: 'imagens/paint-to-print/inicio.webp', alt: {pt: 'Página inicial do Paint to Print com o passo a passo do workshop', en: 'Paint to Print home page with the workshop step by step'}, inteira: true},
+      {src: 'imagens/paint-to-print/celular.webp', alt: {pt: 'Paint to Print no celular: copiar o prompt, usar o Gemini e transformar em 3D', en: 'Paint to Print on a phone: copy the prompt, use Gemini and turn it into 3D'}, inteira: true},
+      {src: 'imagens/paint-to-print/makerworld.webp', alt: {pt: 'Ferramenta de imagem para modelo 3D com personagens gerados', en: 'Image-to-3D-model tool with generated characters'}, inteira: true},
     ],
-    links: {demo: 'https://davicarravieri.github.io/Site-RevelandoSP/', repo: 'https://github.com/DaviCarravieri/Site-RevelandoSP'},
+    links: {demo: 'https://davicarravieri.github.io/Paint-to-Print/', repo: 'https://github.com/DaviCarravieri/Paint-to-Print'},
   },
   {
     id: 'd3d-company',
@@ -104,14 +117,17 @@ window.PROJETOS = [
     tecnologias: ['Nuvemshop', 'E-commerce', 'Impressão 3D'],
     participacao: {pt: '', en: ''},
     resultado: {pt: '', en: ''},
-    midia: [
-      // {src: 'imagens/d3d-company/capa.webp', alt: {pt: '', en: ''}, legenda: {pt: '', en: ''}},
+    midia: [   // a primeira vira a capa
+      {src: 'imagens/d3d-company/inicio.webp', alt: {pt: 'Página inicial da loja D3D Company com a frase “Ideias que ganham forma” e as categorias de produtos', en: 'D3D Company store home page with the tagline “Ideias que ganham forma” and product categories'}, inteira: true},
+      {src: 'imagens/d3d-company/destaques.webp', alt: {pt: 'Produtos em destaque: action figures e estojo em formato de lápis personalizável', en: 'Featured products: action figures and a customizable pencil-shaped case'}, inteira: true},
+      {src: 'imagens/d3d-company/catalogo.webp', alt: {pt: 'Catálogo da loja com organizadores de cozinha, chaveiros e decoração impressos em 3D', en: 'Store catalog with 3D printed kitchen organizers, keychains and home decor'}, inteira: true},
+      {src: 'imagens/d3d-company/produto.webp', alt: {pt: 'Página de produto da loja com fotos, preço e descrição da peça', en: 'Store product page with photos, price and item description'}, inteira: true},
+      {src: 'imagens/d3d-company/personalizar-atacado.webp', alt: {pt: 'Seções da loja sobre pedidos personalizados pelo WhatsApp e compras no atacado', en: 'Store sections about custom orders via WhatsApp and wholesale purchases'}, inteira: true},
     ],
     links: {demo: 'https://d3dcompany.com.br'},
   },
   {
     id: 'pecas-3d',
-    pendente: true,   // falta: descrição completa, processo, fotos
     nome: {pt: 'Peças em impressão 3D', en: '3D printed parts'},
     categoria: {pt: 'Fabricação digital', en: 'Digital fabrication'},
     descricao: {pt: 'Modelagem e impressão 3D de peças.', en: '3D modeling and printing of parts.'},
@@ -121,8 +137,16 @@ window.PROJETOS = [
     processo: {pt: '', en: ''},
     participacao: {pt: '', en: ''},
     resultado: {pt: '', en: ''},
-    midia: [
-      // {src: 'imagens/pecas-3d/capa.webp', alt: {pt: '', en: ''}, legenda: {pt: '', en: ''}},
+    midia: [   // a primeira vira a capa
+      {src: 'imagens/pecas-3d/cachorro-girando.mp4', tipo: 'video', poster: 'imagens/pecas-3d/cachorro-girando.webp', alt: {pt: 'Escultura de cachorro impressa em 3D girando na palma da mão', en: '3D printed dog sculpture turning in the palm of a hand'}},
+      {src: 'imagens/pecas-3d/casa-real.webp', alt: {pt: 'Fachada de uma casa antiga de portas e janelas de madeira', en: 'Facade of an old house with wooden doors and windows'}},
+      {src: 'imagens/pecas-3d/casa-modelo.webp', alt: {pt: 'Modelo 3D da mesma casa', en: '3D model of the same house'}},
+      {src: 'imagens/pecas-3d/casa-impressa.webp', alt: {pt: 'Maquete da casa impressa em 3D e pintada', en: '3D printed and painted model of the house'}},
+      {src: 'imagens/pecas-3d/personagem-real.webp', alt: {pt: 'Pessoa com máscara e figurino de personagem diante de um fundo verde', en: 'Person wearing a character mask and costume in front of a green screen'}},
+      {src: 'imagens/pecas-3d/personagem-ficha.webp', alt: {pt: 'Ficha do personagem em 3D com vistas e detalhes', en: '3D character sheet with views and details'}},
+      {src: 'imagens/pecas-3d/personagem-impresso.webp', alt: {pt: 'Miniatura do personagem impressa em 3D', en: '3D printed miniature of the character'}},
+      {src: 'imagens/pecas-3d/roda-gigante-fatiador.webp', alt: {pt: 'Roda-gigante em miniatura preparada no programa de impressão 3D', en: 'Miniature Ferris wheel prepared in the 3D printing software'}},
+      {src: 'imagens/pecas-3d/roda-gigante.webp', alt: {pt: 'Roda-gigante em miniatura impressa em 3D na palma da mão', en: '3D printed miniature Ferris wheel in the palm of a hand'}},
     ],
     links: {},
   },
@@ -134,10 +158,10 @@ window.EXPERIENCIAS = [
   {
     id: 'fabrica-de-cultura',
     destaque: true,
-    pendente: true,   // falta: período, cargo, resultados e aprendizados
+    pendente: true,   // falta: cargo, resultados e aprendizados
     instituicao: 'Fábrica de Cultura de Iguape',
     organizacao: 'Poiesis',
-    periodo: '',
+    periodo: {pt: 'Desde maio de 2025', en: 'Since May 2025'},
     papel: {pt: 'Educação tecnológica', en: 'Technology education'},
     atividades: {
       pt: 'Aulas práticas de realidade virtual e de pilotagem de drones, aproximando jovens da tecnologia por meio da experimentação.',
@@ -145,24 +169,68 @@ window.EXPERIENCIAS = [
     },
     tecnologias: {pt: ['Realidade virtual', 'Drones', 'Cultura maker', 'Fabricação digital'], en: ['Virtual reality', 'Drones', 'Maker culture', 'Digital fabrication']},
     aprendizados: {pt: '', en: ''},
-    midia: [   // fotos aparecem em galeria logo abaixo da experiência
-      // {src: 'imagens/fabrica-de-cultura/aula-vr.webp', alt: {pt: '', en: ''}, legenda: {pt: '', en: ''}},
+    midia: [   // a primeira vira a capa
+      {src: 'imagens/fabrica-de-cultura/vr-crianca.webp', alt: {pt: 'Davi, ajoelhado, coloca óculos de realidade virtual em uma criança de costas para a câmera', en: 'Davi, kneeling, puts a virtual reality headset on a child facing away from the camera'}},
+      {src: 'imagens/fabrica-de-cultura/drone-voo.webp', alt: {pt: 'Aula de drone ao ar livre com o drone em voo', en: 'Outdoor drone class with the drone in flight'}},
+      {src: 'imagens/fabrica-de-cultura/drone-fpv.webp', alt: {pt: 'Davi com o controle do drone enquanto uma participante usa os óculos de voo', en: 'Davi holding the drone controller while a participant wears the flight goggles'}},
+      {src: 'imagens/fabrica-de-cultura/vr-laboratorio.webp', alt: {pt: 'Participantes com óculos de realidade virtual no laboratório da Fábrica de Cultura', en: 'Participants wearing virtual reality headsets in the Fábrica de Cultura lab'}},
+      {src: 'imagens/fabrica-de-cultura/apresentacao.webp', alt: {pt: 'Apresentação para um grupo na Fábrica de Cultura', en: 'Presentation to a group at Fábrica de Cultura'}},
+      {src: 'imagens/fabrica-de-cultura/selfie-grupo.webp', alt: {pt: 'Selfie do Davi com um grupo de participantes', en: 'Davi’s selfie with a group of participants'}},
+    ],
+  },
+  {
+    id: 'curso-informatica',
+    instituicao: {pt: 'Curso de Informática Básica', en: 'Informática Básica (Basic Computing) course'},
+    organizacao: {pt: 'Prefeitura de Iguape · ETEC (Centro Paula Souza)', en: 'Iguape City Hall · ETEC (Centro Paula Souza)'},
+    periodo: {pt: 'Ago–set de 2026', en: 'Aug–Sep 2026'},
+    papel: {pt: 'Instrutor', en: 'Instructor'},
+    atividades: {
+      pt: 'Ministrei o curso completo, com 12 aulas e 60 horas no período da noite, de 17 de agosto a 1º de setembro. Entre os temas abordados estiveram o uso do computador, o pacote Office, inteligência artificial e a montagem e desmontagem de computadores.',
+      en: 'I taught the full course, 12 evening classes totaling 60 hours, from August 17 to September 1. Topics included using a computer, Microsoft Office, artificial intelligence, and assembling and disassembling computers, among others.',
+    },
+    tecnologias: {pt: ['Informática básica', 'Pacote Office', 'IA', 'Hardware'], en: ['Computer basics', 'Microsoft Office', 'AI', 'Hardware']},
+    aprendizados: {pt: '', en: ''},
+    midia: [
+      {src: 'imagens/curso-informatica/montagem.webp', alt: {pt: 'Alunos montam um computador durante a aula', en: 'Students assemble a computer during class'}},
+      {src: 'imagens/curso-informatica/turma.webp', alt: {pt: 'Selfie do Davi com a turma do curso', en: 'Davi’s selfie with the class'}},
+      {src: 'imagens/curso-informatica/encerramento.webp', alt: {pt: 'Turma reunida com pizzas no encerramento do curso', en: 'The class gathered with pizzas at the end of the course'}},
+      {src: 'imagens/curso-informatica/apostilas.webp', alt: {pt: 'Apostilas do curso sobre a mesa da sala de informática', en: 'Course handouts on a desk in the computer room'}},
     ],
   },
   {
     id: 'ads',
-    pendente: true,   // falta: instituição e período
     instituicao: {pt: 'Análise e Desenvolvimento de Sistemas', en: 'Systems Analysis and Development'},
-    organizacao: '',   // nome da faculdade
-    periodo: {pt: 'Em andamento', en: 'In progress'},
+    organizacao: 'Descomplica Faculdade Digital',
+    periodo: {pt: 'Desde janeiro de 2025', en: 'Since January 2025'},
     papel: {pt: 'Graduação', en: 'Degree'},
-    atividades: {pt: '', en: ''},
+    atividades: {   // módulos com certificado emitido pela faculdade
+      pt: 'Módulos concluídos: Basic Frontend (240 h), Programmer (160 h) e Frontend Developer (240 h).',
+      en: 'Completed modules: Basic Frontend (240 h), Programmer (160 h) and Frontend Developer (240 h).',
+    },
     tecnologias: {pt: [], en: []},
     aprendizados: {pt: '', en: ''},
     midia: [
       // {src: 'imagens/ads/foto.webp', alt: {pt: '', en: ''}, legenda: {pt: '', en: ''}},
     ],
   },
+];
+
+// ---------- CURSOS E CERTIFICADOS ----------
+// Lista discreta abaixo das experiências. "imagem" abre o certificado (o RG no certificado do SENAI foi borrado).
+window.CERTIFICADOS = [
+  {nome: 'Fundamentos de Inteligência Artificial Generativa – Google Cloud', instituicao: 'SENAI-SP', ano: '2026', horas: 20, imagem: 'imagens/certificados/ia-generativa-google-cloud.webp'},
+  {nome: 'Primeiros socorros e brigada de incêndio', instituicao: 'Líder Saúde Ocupacional · Poiesis', ano: '2026', horas: 8, imagem: 'imagens/certificados/brigada.webp'},
+  {nome: 'Operação de Iluminação para Espaços Artísticos', instituicao: 'CULTSP PRO', ano: '2025', horas: 16, imagem: 'imagens/certificados/cultsp-iluminacao.webp'},
+  {nome: 'Frontend Developer', instituicao: 'Descomplica Faculdade Digital', ano: '2026', horas: 240, imagem: 'imagens/certificados/descomplica-frontend-developer.webp'},
+  {nome: 'Programmer', instituicao: 'Descomplica Faculdade Digital', ano: '2025', horas: 160, imagem: 'imagens/certificados/descomplica-programmer.webp'},
+  {nome: 'Basic Frontend', instituicao: 'Descomplica Faculdade Digital', ano: '2025', horas: 240, imagem: 'imagens/certificados/descomplica-basic-frontend.webp'},
+  {nome: 'Blender: criando um modelo 3D', instituicao: 'Alura', ano: '2025', horas: 8, imagem: 'imagens/certificados/blender.webp'},
+  {nome: 'Deep Learning parte 2: como a rede aprende', instituicao: 'Alura', ano: '2025', horas: 6, imagem: 'imagens/certificados/deep-learning-2.webp'},
+  {nome: 'Bootstrap5: crie uma landing page responsiva', instituicao: 'Alura', ano: '2025', horas: 8, imagem: 'imagens/certificados/bootstrap5.webp'},
+  {nome: 'Classificação: aprendendo a classificar dados com Machine Learning', instituicao: 'Alura', ano: '2024', horas: 8, imagem: 'imagens/certificados/machine-learning.webp'},
+  {nome: 'Pandas: conhecendo a biblioteca', instituicao: 'Alura', ano: '2024', horas: 8, imagem: 'imagens/certificados/pandas.webp'},
+  {nome: 'Python para Dados: primeiros passos', instituicao: 'Alura', ano: '2024', horas: 10, imagem: 'imagens/certificados/python-dados.webp'},
+  {nome: 'Python: crie a sua primeira aplicação', instituicao: 'Alura', ano: '2024', horas: 8, imagem: 'imagens/certificados/python.webp'},
 ];
 
 // ---------- TEXTOS FIXOS ----------
@@ -200,6 +268,7 @@ window.TEXTOS = {
 
     exp_titulo: 'Experiências que constroem conhecimento.',
     exp_texto: 'Trajetória prática entre educação, cultura maker e desenvolvimento.',
+    cert_titulo: 'Cursos e certificados', cert_ver: 'Ver certificado',
 
     sobre_titulo: 'Sobre',
     sobre_texto: 'Gosto de tecnologia quando ela sai da tela. Estudo Análise e Desenvolvimento de Sistemas, desenvolvo sites e aplicações, imprimo peças em 3D e levo realidade virtual e drones para a Fábrica de Cultura de Iguape. Cada frente me ensina algo diferente: o código pede precisão, a fabricação digital pede paciência e a sala de aula mostra que uma ideia só faz sentido quando chega às pessoas. É assim que vejo inovação: menos sobre a ferramenta do momento e mais sobre o que ela permite construir. Quero seguir aprendendo em projetos com impacto real, onde tecnologia, criatividade e pessoas se encontram.',
@@ -246,6 +315,7 @@ window.TEXTOS = {
 
     exp_titulo: 'Experience that builds knowledge.',
     exp_texto: 'A hands-on path across education, maker culture and development.',
+    cert_titulo: 'Courses and certificates', cert_ver: 'View certificate',
 
     sobre_titulo: 'About',
     sobre_texto: "I like technology when it leaves the screen. I study Systems Analysis and Development, build websites and applications, 3D print parts and bring virtual reality and drones to Fábrica de Cultura in Iguape. Each of these teaches me something different: code asks for precision, digital fabrication asks for patience, and the classroom shows that an idea only matters once it reaches people. That's how I see innovation: less about the tool of the moment and more about what it lets us build. I want to keep learning on projects with real impact, where technology, creativity and people meet.",

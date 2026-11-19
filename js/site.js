@@ -23,7 +23,7 @@
     document.querySelectorAll('[data-t]').forEach(el => { const v = pegar(x, el.dataset.t); if (v != null) el.textContent = v; });
     document.querySelectorAll('[data-t-label]').forEach(el => el.setAttribute('aria-label', pegar(x, el.dataset.tLabel)));
     menu.rotular();
-    montarFrentes(); montarProjetos(); montarExperiencias(); montarContato(); montarFaixas(); letras.preparar();
+    montarFrentes(); montarProjetos(); montarExperiencias(); montarCertificados(); montarContato(); montarFaixas(); letras.preparar();
     observarFades(); aoRolar();
   }
   $('#idioma').addEventListener('click', () => {
@@ -89,7 +89,7 @@
   function midiaHTML(m, capa) {
     const alt = esc(tx(m.alt) || '');
     if (ehVideo(m)) return `<video src="${esc(m.src)}" ${m.poster ? `poster="${esc(m.poster)}"` : ''} ${capa ? 'muted loop playsinline autoplay' : 'controls playsinline'} preload="metadata" aria-label="${alt}"></video>`;
-    return `<img src="${esc(m.src)}" alt="${alt}" loading="lazy" decoding="async">`;
+    return `<img src="${esc(m.src)}" alt="${alt}"${m.inteira ? ' class="inteira"' : ''} loading="lazy" decoding="async">`;
   }
   const galeria = lista => `<div class="galeria">${lista.map(m => `<figure>${midiaHTML(m, false)}${tem(m.legenda) ? `<figcaption>${esc(tx(m.legenda))}</figcaption>` : ''}</figure>`).join('')}</div>`;
 
@@ -180,6 +180,15 @@
         ${(ex.midia || []).length ? galeria(ex.midia) : ''}
       </li>`;
     }).join('');
+  }
+
+  // ---------- cursos e certificados (lista discreta) ----------
+  function montarCertificados() {
+    const x = t(), C = window.CERTIFICADOS || [];
+    $('#certificados').innerHTML = C.length ? `<h3 class="rotulo">${x.cert_titulo}</h3><ul>${C.map(c => `
+      <li class="cert"><span class="cert-nome">${esc(c.nome)}</span>
+        <span class="cert-info">${[c.instituicao, c.ano, c.horas && (c.horas + ' h')].filter(Boolean).map(esc).join(' · ')}</span>
+        ${c.imagem ? `<a class="cert-link" href="${esc(c.imagem)}" target="_blank" rel="noopener">${x.cert_ver} ↗</a>` : ''}</li>`).join('')}</ul>` : '';
   }
 
   // ---------- faixa em movimento ----------
